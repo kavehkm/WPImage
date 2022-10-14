@@ -38,6 +38,10 @@ RUN apt-get -yqq update &&\
 COPY confs/upload.ini ${PHP_CONF_PATH}
 
 
+# customize php-fpm settings
+COPY confs/www.conf /usr/local/etc/php-fpm.d/www.conf
+
+
 # add php production settings
 RUN mv ${PHP_INI_DIR}/php.ini-production ${PHP_CONF_PATH}/php.ini
 
