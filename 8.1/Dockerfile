@@ -3,8 +3,8 @@ FROM wordpress:6.0-php8.1-fpm
 
 
 # args
-ARG USER_ID=1000
-ARG GROUP_ID=1000
+ARG USER_ID=1001
+ARG GROUP_ID=1001
 ARG PHP_EXTENSION_PATH=/usr/local/lib/php/extensions/no-debug-non-zts-20210902
 ARG PHP_CONF_PATH=/usr/local/etc/php/conf.d
 ARG WPCLI_PATH=/usr/local/bin
