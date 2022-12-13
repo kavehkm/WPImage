@@ -22,6 +22,11 @@ RUN echo "zend_extension = ${PHP_EXTENSION_PATH}/ioncube_loader_lin_7.4.so" > ${
 RUN rm -rf ioncube_loaders_lin_x86* ioncube
 
 
+# install sourceguardian
+COPY extensions/ixed.7.4.lin ${PHP_EXTENSION_PATH}
+RUN echo "extension = ${PHP_EXTENSION_PATH}/ixed.7.4.lin" > ${PHP_CONF_PATH}/01-sourceguardian.ini
+
+
 # install wpcli
 COPY extensions/wp-cli.phar .
 RUN chmod +x wp-cli.phar
