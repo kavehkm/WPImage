@@ -1,14 +1,10 @@
 name: Build
-
 on:
   push:
-    branches: ["main"]
-
+    branches: [ "main" ]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Login to Github Container Registry
@@ -23,4 +19,3 @@ jobs:
         docker push ghcr.io/kavehkm/wp_74_dynamic:6.0
         docker build --no-cache -t ghcr.io/kavehkm/wp_81_dynamic:6.0 -f 8.1/Dockerfile .
         docker push ghcr.io/kavehkm/wp_81_dynamic:6.0
-
