@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to Github Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and Push
+      run: |
+        docker build --no-cache -t ghcr.io/kavehkm/wp_74_dynamic:6.0 -f 7.4/Dockerfile .
+        docker push ghcr.io/kavehkm/wp_74_dynamic:6.0
+        docker build --no-cache -t ghcr.io/kavehkm/wp_81_dynamic:6.0 -f 8.1/Dockerfile .
+        docker push ghcr.io/kavehkm/wp_81_dynamic:6.0
+
