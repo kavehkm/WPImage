@@ -39,6 +39,15 @@ RUN apt-get -yqq update &&\
     docker-php-ext-install soap
 
 
+# install imap extension
+RUN apt-get update && \
+    apt-get install -y \
+        libc-client-dev libkrb5-dev && \
+    rm -r /var/lib/apt/lists/*
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
+    docker-php-ext-install -j$(nproc) imap
+
+
 # customize php upload settings
 COPY confs/upload.ini ${PHP_CONF_PATH}
 
